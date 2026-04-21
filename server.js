@@ -24,6 +24,26 @@ app.get('/buscar/dni/:dni', async function(req, res) {
   }
 })
 
+app.get('/buscar/ruc/:ruc', async function(req, res) {
+  var ruc = req.params.ruc
+
+  try {
+    var respuesta = await fetch('https://api.decolecta.com/v1/sunat/ruc?numero=' + ruc, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer sk_11584.skX2BKRPsEkcRW0p6bWQLXG7pxlZYta4'
+      }
+    })
+
+    var data = await respuesta.json()
+    console.log('Respuesta RUC:', JSON.stringify(data))
+    res.json(data)
+
+  } catch (error) {
+    console.log('Error RUC:', error.message)
+    res.status(500).json({ error: error.message })
+  }
+})
 
 app.listen(3000, function() {
   console.log('Servidor corriendo en http://localhost:3000')

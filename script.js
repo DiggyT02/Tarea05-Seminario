@@ -78,4 +78,37 @@ var grafico1 = new Chart(document.getElementById("chart1"), {
     }
   }
 
+
+// Buscar RUC
+  async function buscarRUC() {
+    var ruc = document.getElementById("inputRUC").value;
+
+    if (ruc.length != 11) {
+      alert("El RUC debe tener 11 dígitos");
+      return;
+    }
+
+    document.getElementById("resultadoRUC").innerHTML = "<p>Buscando...</p>";
+
+    try {
+      var respuesta = await fetch("/buscar/ruc/" + ruc);
+      var data = await respuesta.json();
+
+      document.getElementById("resultadoRUC").innerHTML = `
+  <table class="table table-bordered" style="max-width: 500px;">
+    <tr><th>Razón Social</th><td>${data.razon_social}</td></tr>
+    <tr><th>RUC</th><td>${data.numero_documento}</td></tr>
+    <tr><th>Estado</th><td>${data.estado}</td></tr>
+    <tr><th>Condición</th><td>${data.condicion}</td></tr>
+    <tr><th>Dirección</th><td>${data.direccion}</td></tr>
+    <tr><th>Distrito</th><td>${data.distrito}</td></tr>
+    <tr><th>Provincia</th><td>${data.provincia}</td></tr>
+    <tr><th>Departamento</th><td>${data.departamento}</td></tr>
+    </table>
+`;
+    } catch (error) {
+      document.getElementById("resultadoRUC").innerHTML = "<p class='text-danger'>Error al buscar el RUC</p>";
+    }
+  }
+
  
