@@ -47,3 +47,35 @@ var grafico1 = new Chart(document.getElementById("chart1"), {
       }
     });
   });
+
+
+  // BUSCAR DNI
+
+  async function buscarDNI() {
+    var dni = document.getElementById("inputDNI").value;
+
+    if (dni.length != 8) {
+      alert("El DNI debe tener 8 dígitos");
+      return;
+    }
+
+    document.getElementById("resultadoDNI").innerHTML = "<p>Buscando...</p>";
+
+    try {
+      var respuesta = await fetch("/buscar/dni/" + dni);
+      var data = await respuesta.json();
+
+      document.getElementById("resultadoDNI").innerHTML = `
+    <table class="table table-bordered" style="max-width: 400px;">
+    <tr><th>Apellido Paterno</th><td>${data.first_last_name}</td></tr>
+    <tr><th>Apellido Materno</th><td>${data.second_last_name}</td></tr>
+    <tr><th>Nombres</th><td>${data.first_name}</td></tr>
+    <tr><th>DNI</th><td>${data.document_number}</td></tr>
+  </table>
+`;
+    } catch (error) {
+      document.getElementById("resultadoDNI").innerHTML = "<p class='text-danger'>Error al buscar el DNI</p>";
+    }
+  }
+
+ 
