@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea05</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body class="bg-ligth">
+
+    <div class="container mt-4">
+  <h2 class="mb-4">Tarea Seminario</h2>
+ 
+  <ul class="nav nav-tabs" id="miTab">
+    <li class="nav-item">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#grafico1">Gráfico 1</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#grafico2" id="btnG2">Gráfico 2</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buscarDNI">Buscar DNI</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#buscarRUC">Buscar RUC</button>
+    </li>
+  </ul>
+ 
+  <div class="tab-content border border-top-0 bg-white p-4">
+ 
+    <!-- GRAFICO 1 -->
+    <div class="tab-pane fade show active" id="grafico1">
+      <h5>Lenguajes de Programación</h5>
+      <p class="text-muted">Ingresa los valores</p>
+ 
+      <div class="row mb-3">
+        <div class="col">
+          <label>Python</label>
+          <input type="number" id="v1" class="form-control" value="85">
+        </div>
+        <div class="col">
+          <label>JavaScript</label>
+          <input type="number" id="v2" class="form-control" value="72">
+        </div>
+        <div class="col">
+          <label>Java</label>
+          <input type="number" id="v3" class="form-control" value="61">
+        </div>
+        <div class="col">
+          <label>PHP</label>
+          <input type="number" id="v4" class="form-control" value="45">
+        </div>
+        <div class="col">
+          <label>C++</label>
+          <input type="number" id="v5" class="form-control" value="58">
+        </div>
+      </div>
+ 
+      <button class="btn btn-primary mb-3" onclick="actualizar()">Actualizar Gráfico</button>
+ 
+      <canvas id="chart1"></canvas>
+    </div>
+ 
+    <!-- GRAFICO 2 -->
+    <div class="tab-pane fade" id="grafico2">
+      <h5>Días de la Semana</h5>
+      <p class="text-muted">Datos</p>
+      <canvas id="chart2"></canvas>
+    </div>
+ 
+    <!-- BUSCAR DNI -->
+    <div class="tab-pane fade" id="buscarDNI">
+      <h5>Buscar Persona por DNI</h5>
+      <div class="mb-3">
+        <label>Número de DNI:</label>
+        <input type="text" id="inputDNI" class="form-control" placeholder="Ej: 12345678" maxlength="8" style="max-width: 300px;">
+      </div>
+      <button class="btn btn-primary" onclick="buscarDNI()">Buscar</button>
+      <div id="resultadoDNI" class="mt-3"></div>
+    </div>
+ 
+    <!-- BUSCAR RUC -->
+    <div class="tab-pane fade" id="buscarRUC">
+      <h5>Buscar Empresa por RUC</h5>
+      <div class="mb-3">
+        <label>Número de RUC:</label>
+        <input type="text" id="inputRUC" class="form-control" placeholder="Ej: 20123456789" maxlength="11" style="max-width: 300px;">
+      </div>
+      <button class="btn btn-primary" onclick="buscarRUC()">Buscar</button>
+      <div id="resultadoRUC" class="mt-3"></div>
+    </div>
+ 
+  </div>
+</div>
+    
+</body>
+</html>
